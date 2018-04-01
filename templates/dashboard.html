@@ -1,0 +1,102 @@
+<div class="container">
+  <div ng-controller='FreightController'>
+    <div ng-show="!dashboard">
+      <h2>Dashboard</h2>
+      <hr></hr>
+      <div class="col-sm-1 col-md-1"></div>
+      <div class="col-sm-3 col-md-3 glyphicon-custom">
+        <i class="glyphicon glyphicon-user"></i>
+      </div>
+      <div class="col-sm-7 col-md-7 user-info-custom">
+        <h3>{{UserInfo.name}}</h3>
+        <hr>
+        <p><span>User Level:</span> {{UserInfo.userLevel}}</p>
+        <p><span>Email:</span> {{UserInfo.email}}</p>
+        <p><span>Member Since:</span> {{UserInfo.memberSince}}</p>
+        <hr>
+        <button type="button" ng-click="dashboard=!dashboard" class="btn btn-lg btn-custom btn-block"><i class="glyphicon glyphicon-search"></i> Freight Search</button>
+      </div>
+      <div class="col-sm-1 col-md-1"></div>
+    </div>
+    <div ng-show="dashboard">
+      <p class="user-log">LOGGED AS: {{UserInfo.email}}</p>
+      <hr></hr>
+      <div class="row text-center transport-icons-custom">
+        <div class="col-sm-3 col-md-3"><i class="material-icons">local_shipping</i></div>
+        <div class="col-sm-3 col-md-3"><i class="material-icons">directions_boat</i></div>
+        <div class="col-sm-3 col-md-3"><i class="material-icons">flight_takeoff</i></div>
+        <div class="col-sm-3 col-md-3"><i class="material-icons">train</i></div>
+      </div>
+      <div class="row dfsb-btns">
+        <div class="col-sm-3 col-md-3"><button type="button" ng-click="dashboard=!dashboard" class="btn btn-lg btn-custom">Dashnoard</button></div>
+        <div class="col-sm-3 col-md-3"><button type="button" class="btn btn-lg btn-custom-disabled disabled">Freight Search</button></div>
+        <div class="col-sm-3 col-md-3"><button type="button" class="btn btn-lg btn-custom">Spot Requests</button></div>
+        <div class="col-sm-3 col-md-3"><button type="button" class="btn btn-lg btn-custom">Bookings</button></div>
+      </div>
+      <form class="col-sm-8 col-md-8 form-horizontal">
+        <div class="form-inline">
+          <label class="control-label col-sm-1" for="">From</label>
+          <div class="col-sm-4">
+            <input type="text" ng-model="cityFrom" ng-Keyup="completeFrom(cityFrom)" class="form-control" />
+
+            <ul class="list-group" ng-hide="hidethisFrom">
+              <li class="list-group-item" ng-repeat="citydataFrom in filterCity" ng-click="fillTextboxFrom(citydataFrom)">{{citydataFrom}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-inline">
+          <label class="control-label col-sm-1" for="">To</label>
+          <div class="col-sm-5">
+            <input type="text" ng-model="cityTo" ng-Keyup="completeTo(cityTo)" class="form-control" />
+
+            <ul class="list-group" ng-hide="hidethisTo">
+              <li class="list-group-item" ng-repeat="citydataTo in filterCity" ng-click="fillTextboxTo(citydataTo)">{{citydataTo}}</li>
+            </ul>
+          </div>
+        </div><br><br><br>
+
+        <div class="form-inline dropdown-alignment-l">
+          <label class="control-label col-sm-1" for="">Unit</label>
+          <select ng-model="unit" class="col-sm-4 btn btn-custom form-control">
+              <option value="">Please Select Unit Size</option>
+              <option value="{{unit}}" ng-repeat="unit in unitSizeOptions">{{unit}}</option>
+            </select>
+        </div>
+        <div class="form-inline dropdown-alignment-r">
+          <label class="control-label col-sm-1" for="">Terms</label>
+          <select ng-model="term" class="col-sm-4 btn btn-custom form-control">
+              <option value="">Please Select Term</option>
+              <option value="{{term}}" ng-repeat="term in termOptions">{{term}}</option>
+            </select>
+        </div>
+      </form>
+      <div class="col-sm-4 col-md-4 search-freight-btn"><button type="submit" ng-click="queryInput(unit, cityFrom, cityTo, term)" class="btn btn-lg btn-custom btn-block"><i class="glyphicon glyphicon-export"></i> Search</button></div>
+      <br><br><br><br><br><br>
+      <div ng-show="searchResultDiv == true">
+        <h3 class="curved text-center">Result on the Map</h3>
+        <div id="map" style="height:500px; width:100%;"></div>
+
+        <h3 class="curved text-center">Result Details</h3>
+        <div class="" data-ng-repeat="paths in pathOptions">
+          <div class="option-heading">
+            <p>OPTION {{$index+1}} {{termOpt}}</p>
+            <div>
+              <p>{{paths.path}} - {{viewCityTo}}</p>
+              <p data-ng-repeat="detail in paths.breakDown track by $index"><span ng-show="$last">FROM {{detail.costTotal}} EUR AND {{detail.daysTotal}} DAYS</span></p>
+            </div>
+          </div><br>
+          <div class="option-body">
+            <div data-ng-repeat="detail in paths.breakDown track by $index">
+              <div ng-hide="$last">
+                <p>{{detail.object.durationInDays}} DAYS by {{detail.object.transportModel}}</p>
+                <p>{{detail.object.cityFrom}} - {{detail.object.cityTo}} on {{detail.unitShipment}}'' CONTAINER</p>
+                <p style="border-bottom: 1px dashed #2b87a6;" class="text-right">&euro; {{detail.expenseShipment}}</p>
+              </div>
+              <h4 ng-show="$last" class="text-right">&euro; {{detail.costTotal}}</h4>
+            </div>
+          </div><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

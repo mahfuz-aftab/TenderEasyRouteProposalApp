@@ -1,0 +1,132 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ------------------- Login ------------------- */
+
+.login-page-bg {
+  margin-top: 15%;
+  background-color: #eee;
+  border: 1px solid #aaa;
+}
+
+.login-page-logo {
+  text-align: center;
+  padding-top: 3%;
+}
+
+.login-form {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 3% 0;
+}
+
+.credentials-warning {
+  color: #d01010;
+  text-align: center;
+  font-weight: 600;
+  padding: 3% 0;
+}
+
+
+/* ------------------- Dashnoard ------------------- */
+
+.glyphicon-custom {
+  font-size: 12em;
+}
+
+.user-info-custom p>span {
+  font-weight: bold;
+}
+
+.user-info-custom button {
+  float: right;
+  width: 50%;
+}
+
+
+/* ------------------- Freight Search ------------------- */
+
+.user-log {
+  padding: 2% 0 0 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #2b87a6;
+}
+
+.transport-icons-custom i {
+  font-size: 155px;
+  padding: 0 0 15% 0;
+}
+
+.dfsb-btns {
+  margin-bottom: 5%;
+}
+
+.dfsb-btns button {
+  margin: 3% 0 5% 0;
+}
+
+.btn-custom:hover, .btn-custom:hover {
+  color: #fff;
+}
+
+.btn-custom {
+  background: #2b87a6;
+  color: #ffffff;
+}
+
+.btn-custom-disabled {
+  background: #555;
+  color: #ffffff;
+}
+
+.dropdown-alignment-l {
+  margin-left: 2%;
+}
+
+.dropdown-alignment-r {
+  margin-left: -85%;
+}
+
+.search-freight-btn {
+  padding: 3% 0;
+}
+
+.curved {
+  font-weight: bold;
+  color: #eee;
+  background: #2b87a6;
+  padding: 1% 0;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.option-heading {
+  border: 2px solid #555;
+  background: #d9edf7;
+  color: #2b87a6;
+  padding: 1% 2%;
+  font-weight: bold;
+}
+
+.option-body {
+  border: 1px solid #333;
+  color: #2b87a6;
+  padding: 1% 2%;
+}
+
+.option-heading div>p {
+  display: inline-block;
+}
+
+.option-body h4 {
+  font-weight: bold;
+  color: #eee;
+  background: #2b87a6;
+  padding: 1% 2%;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
